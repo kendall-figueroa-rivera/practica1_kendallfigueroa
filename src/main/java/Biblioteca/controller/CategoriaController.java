@@ -6,7 +6,9 @@
 package Biblioteca.controller;
 
 import Biblioteca.domain.Categoria;
+import Biblioteca.domain.Libro;
 import Biblioteca.service.CategoriaService;
+import Biblioteca.service.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,23 @@ public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Autowired
+    private LibroService libroService; // Inyectamos LibroService para el libro destacado
+
+    // Método para la página de inicio
+@GetMapping("/")
+public String inicio(Model model) {
+    // Tomamos el primer libro como destacado, si no hay ninguno, creamos uno vacío
+    Libro libroDestacado = libroService.listar().stream().findFirst().orElse(new Libro());
+    model.addAttribute("libro", libroDestacado);
+
+    // Pasamos la lista de categorías al modelo
+    model.addAttribute("categorias", categoriaService.listar());
+
+    return "index"; // Renderiza index.html
+}
+
+    // Listado de categorías
     @GetMapping("/lista")
     public String listar(Model model) {
         model.addAttribute("categorias", categoriaService.listar());
@@ -26,6 +45,7 @@ public class CategoriaController {
         return "categoria/lista";
     }
 
+    // Formulario nueva categoría
     @GetMapping("/nueva")
     public String nueva(Model model) {
         model.addAttribute("categoria", new Categoria());
@@ -33,12 +53,14 @@ public class CategoriaController {
         return "categoria/form";
     }
 
+    // Guardar categoría
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Categoria categoria) {
         categoriaService.guardar(categoria);
         return "redirect:/categoria/lista";
     }
 
+    // Editar categoría
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
         Categoria categoria = categoriaService.obtenerPorId(id);
@@ -50,6 +72,7 @@ public class CategoriaController {
         return "categoria/form";
     }
 
+    // Eliminar categoría
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable("id") Long id) {
         categoriaService.eliminar(id);
