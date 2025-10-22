@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: contenido">
-<div class="container">
-    <h2 th:text="${titulo}"></h2>
-    <form th:action="@{/categoria/guardar}" th:object="${categoria}" method="post">
-        <input type="hidden" th:field="*{id}">
+<html xmlns:th="http://www.thymeleaf.org" lang="es" th:replace="layout/base :: contenido">
+<div class="container mt-4">
+    <h2 class="mb-4" th:text="${titulo}">Formulario de Categoría</h2>
+
+    <form th:action="@{/categoria/guardar}" th:object="${categoria}" method="post" class="card p-4 shadow-sm">
+        <input type="hidden" th:field="*{id}"/>
+
         <div class="mb-3">
-            <label>Nombre:</label>
-            <input class="form-control" th:field="*{nombre}" required>
+            <label class="form-label">Nombre:</label>
+            <input class="form-control" th:field="*{nombre}" placeholder="Ingrese el nombre de la categoría" required/>
         </div>
+
         <div class="mb-3">
-            <label>Descripción:</label>
-            <textarea class="form-control" th:field="*{descripcion}" required></textarea>
+            <label class="form-label">Descripción:</label>
+            <textarea class="form-control" th:field="*{descripcion}" placeholder="Describa la categoría" required></textarea>
         </div>
-        <button class="btn btn-primary">Guardar</button>
-        <a th:href="@{/categoria/lista}" class="btn btn-secondary">Cancelar</a>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a th:href="@{/categoria/lista}" class="btn btn-secondary">Cancelar</a>
+        </div>
     </form>
 </div>
 </html>

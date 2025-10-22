@@ -1,27 +1,20 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: contenido">
-<div class="container">
-    <h2 th:text="${titulo}"></h2>
-    <form th:action="@{/queja/guardar}" th:object="${queja}" method="post">
-        <input type="hidden" th:field="*{id}">
-        <div class="mb-3">
-            <label>Nombre:</label>
-            <input class="form-control" th:field="*{nombre}" required>
-        </div>
-        <div class="mb-3">
-            <label>Correo:</label>
-            <input type="email" class="form-control" th:field="*{correo}" required>
-        </div>
-        <div class="mb-3">
-            <label>Mensaje:</label>
-            <textarea class="form-control" th:field="*{mensaje}" required></textarea>
-        </div>
-        <button class="btn btn-primary">Guardar</button>
-        <a th:href="@{/queja/lista}" class="btn btn-secondary">Cancelar</a>
-    </form>
-</div>
+<html xmlns:th="http://www.thymeleaf.org" lang="es" th:replace="layout/base :: contenido">
+<h2>Formulario de Quejas y Sugerencias</h2>
+
+<form th:action="@{/queja/guardar}" th:object="${queja}" method="post">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" th:field="*{nombre}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" th:field="*{correo}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <textarea th:field="*{mensaje}" class="form-control" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
 </html>
