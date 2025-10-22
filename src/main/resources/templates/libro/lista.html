@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: contenido">
+<div class="container">
+    <h2>Listado de Libros</h2>
+    <a class="btn btn-success mb-2" th:href="@{/libro/nuevo}">Nuevo Libro</a>
+    <table class="table table-striped">
+        <thead>
+        <tr><th>ID</th><th>Título</th><th>Autor</th><th>Categoría</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="libro : ${libros}">
+            <td th:text="${libro.id}"></td>
+            <td th:text="${libro.titulo}"></td>
+            <td th:text="${libro.autor}"></td>
+            <td th:text="${libro.categoria.nombre}"></td>
+            <td>
+                <a th:href="@{'/libro/editar/' + ${libro.id}}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{'/libro/eliminar/' + ${libro.id}}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

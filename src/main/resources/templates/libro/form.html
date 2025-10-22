@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: contenido">
+<div class="container">
+    <h2 th:text="${titulo}"></h2>
+    <form th:action="@{/libro/guardar}" th:object="${libro}" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div class="mb-3">
+            <label>Título:</label>
+            <input class="form-control" th:field="*{titulo}" required>
+        </div>
+        <div class="mb-3">
+            <label>Autor:</label>
+            <input class="form-control" th:field="*{autor}" required>
+        </div>
+        <div class="mb-3">
+            <label>Categoría:</label>
+            <select class="form-control" th:field="*{categoria}" required>
+                <option th:each="cat : ${categorias}" th:value="${cat}" th:text="${cat.nombre}"></option>
+            </select>
+        </div>
+        <button class="btn btn-primary">Guardar</button>
+        <a th:href="@{/libro/lista}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: contenido">
+<div class="container">
+    <h2>Listado de Categorías</h2>
+    <a class="btn btn-success mb-2" th:href="@{/categoria/nueva}">Nueva Categoría</a>
+    <table class="table table-striped">
+        <thead>
+        <tr><th>ID</th><th>Nombre</th><th>Descripción</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="cat : ${categorias}">
+            <td th:text="${cat.id}"></td>
+            <td th:text="${cat.nombre}"></td>
+            <td th:text="${cat.descripcion}"></td>
+            <td>
+                <a th:href="@{'/categoria/editar/' + ${cat.id}}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{'/categoria/eliminar/' + ${cat.id}}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

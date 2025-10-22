@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo} ?: 'Biblioteca'"></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">Biblioteca</a>
+        <div>
+            <a class="nav-link text-white" th:href="@{/categoria/lista}">Categorías</a>
+            <a class="nav-link text-white" th:href="@{/libro/lista}">Libros</a>
+            <a class="nav-link text-white" th:href="@{/queja/lista}">Quejas</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div th:replace="${contenido}"></div>
+</div>
+
+<footer class="text-center mt-5 mb-3 text-muted">
+    <p>© 2025 Biblioteca Virtual</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout/base :: contenido">
+<div class="container">
+    <h2>Listado de Quejas</h2>
+    <a class="btn btn-success mb-2" th:href="@{/queja/nueva}">Nueva Queja</a>
+    <table class="table table-striped">
+        <thead>
+        <tr><th>ID</th><th>Nombre</th><th>Correo</th><th>Mensaje</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="q : ${quejas}">
+            <td th:text="${q.id}"></td>
+            <td th:text="${q.nombre}"></td>
+            <td th:text="${q.correo}"></td>
+            <td th:text="${q.mensaje}"></td>
+            <td>
+                <a th:href="@{'/queja/eliminar/' + ${q.id}}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>
