@@ -31,6 +31,7 @@ public String inicio(Model model) {
     Libro libroDestacado = libroService.listar().stream().findFirst().orElse(new Libro());
     model.addAttribute("libro", libroDestacado);
 
+    
     // Pasamos la lista de categorías al modelo
     model.addAttribute("categorias", categoriaService.listar());
 
